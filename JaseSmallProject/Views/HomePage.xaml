@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="JaseSmallProject.Views.HomePage">
+    <ContentPage.Content>
+        <CollectionView ItemsLayout="VerticalList"
+                        >
+            <StackLayout>
+                <Label x:Name="LabelAPi" Text="OpenApi"
+                    VerticalOptions="CenterAndExpand" 
+                    HorizontalOptions="CenterAndExpand" />
+                <Button x:Name="OpenApiBtn" Text="Click for open api" Clicked="OpenApiBtn_Clicked"/>
+                <Button x:Name="ProtectedBtn" Text="Click for protected api" Clicked="ProtectedBtn_Clicked"/>
+            </StackLayout>
+        </CollectionView> 
+    </ContentPage.Content>
+</ContentPage>
