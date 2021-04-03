@@ -19,11 +19,10 @@ namespace JaseSmallProject.Views
         {
             InitializeComponent();
             BindingContext = this;
-            //SigninAttempt = new Command(SignIn);
             
         }
 
-        //public ICommand SigninAttempt { get; }
+
 
         protected override async void OnAppearing()
         {
@@ -35,7 +34,15 @@ namespace JaseSmallProject.Views
                     AuthenticationResult result = await App.AuthenticationClient
                         .AcquireTokenSilent(Constants.Scopes, accounts.FirstOrDefault())
                         .ExecuteAsync();
-                    await Navigation.PushAsync(new HomePage(result));
+                    if (result.IdToken.Length>1)
+                    {
+                        await Navigation.PushAsync(new ProtectedPage());
+                    }
+                    else
+                    {
+                        return;
+                    }
+                    
                 }
             }
             catch
@@ -57,7 +64,7 @@ namespace JaseSmallProject.Views
                     .WithPrompt(Prompt.ForceLogin)
                     .WithParentActivityOrWindow(App.UIParent)
                     .ExecuteAsync();
-                await Navigation.PushAsync(new HomePage(result));
+                await Navigation.PushAsync(new ProtectedPage());
             }
             catch (MsalClientException)
             {

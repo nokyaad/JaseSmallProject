@@ -1,30 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="JaseSmallProject.Views.HomePage"
+             x:Class="JaseSmallProject.Views.ProtectedPage"
              xmlns:viewmodels="clr-namespace:JaseSmallProject.ViewModels"
              xmlns:models="clr-namespace:JaseSmallProject.Models"
              BackgroundColor="White"
-             x:DataType="viewmodels:OpenApiCallViewModel">
+             x:DataType="viewmodels:ProtectedApiCallViewModel">
     <ContentPage.BindingContext>
-        <viewmodels:OpenApiCallViewModel/>
+        <viewmodels:ProtectedApiCallViewModel/>
     </ContentPage.BindingContext>
-    
     <ContentPage.Content>
-        <CollectionView ItemsLayout="VerticalList"
-                        ItemsSource="{Binding Chargers}">
+        <CollectionView ItemsSource="{Binding Chargers}"
+                        ItemsLayout="VerticalList">
             <CollectionView.EmptyView>
                 <StackLayout>
-                    <Label HorizontalOptions="Center" Text="No Results"></Label>
-                    <Button Text="click me" 
-                            HorizontalOptions="Center"
-                            VerticalOptions="Center"
-                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:OpenApiCallViewModel}}, Path=GetApiCommand}"
-                            CommandParameter="{Binding .}"/>
-                    <Button Text="Login"
-                            HorizontalOptions="Center"
-                            VerticalOptions="Center"
-                            Clicked="Button_Clicked"/>
+                    <Label Text="oh no Jase wheres the data"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="CenterAndExpand"/>
+                    <Button Text="click me"
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="CenterAndExpand"
+                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:ProtectedApiCallViewModel}}, Path=GetProtectedApiCommand}"
+                        CommandParameter="{Binding .}"/>
                 </StackLayout>
             </CollectionView.EmptyView>
             <CollectionView.ItemTemplate>
@@ -49,14 +46,6 @@
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
-            <CollectionView.Footer>
-
-                    <Button Text="Login"
-                                         HorizontalOptions="Center"
-                                        VerticalOptions="Center"
-                                        Clicked="Button_Clicked"/>
-
-            </CollectionView.Footer>
-        </CollectionView> 
+        </CollectionView>
     </ContentPage.Content>
 </ContentPage>
